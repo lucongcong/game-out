@@ -1,0 +1,15 @@
+{
+  "presets": [
+    "env",
+    "es2015"
+  ],
+  "plugins": [
+    [
+      "import",
+      {
+        "libraryName": "antd-mobile",
+        "style": true
+      }
+    ]
+  ]
+}

@@ -1,0 +1,96 @@
+@import 'variable';
+@import 'mixins';
+@import 'reset';
+@import 'grid';
+html,
+body {
+  width: 100%;
+  font-size: 14px;
+  background-color: #fff;
+  overflow: hidden;
+  color: $base-color;
+  line-height: 1.4;
+}
+a {
+  text-decoration: none;
+}
+
+[v-cloak] {
+  display: none !important;
+}
+
+.full-width {
+  width: 100%;
+}
+.padding-horizontal {
+  padding-left: $content-padding;
+  padding-right: $content-padding;
+}
+.dbl-padding-horizontal {
+  padding-left: 2 * $content-padding;
+  padding-right: 2 * $content-padding;
+}
+.dbl-padding-left {
+  padding-left: 2 * $content-padding;
+}
+.margin-horizontal {
+  margin-left: $content-padding;
+  margin-right: $content-padding;
+}
+
+.relative {
+  position: relative;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.assertive {
+  color: $assertive;
+}
+.positive {
+  color: $positive;
+}
+.gray {
+  color: $gray;
+}
+
+/**
+ * button
+ * --------------------------------------------------
+ */
+
+.button {
+  outline: none;
+  border-color: transparent;
+  background-color: $button-disabled-bg-color;
+  color: #fff;
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0 12px;
+  min-width: 52px;
+  min-height: 44px;
+  border: none;
+  border-radius: 50px;
+  vertical-align: top;
+  text-align: center;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  line-height: 44px;
+  cursor: pointer;
+  &.button-block {
+    display: block;
+    width: 100%;
+  }
+  &.disabled,
+  &[disabled] {
+    background-color: $button-disabled-bg-color;
+  }
+}
+
+.button-positive {
+  background-color: $positive;
+}
