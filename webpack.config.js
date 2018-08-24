@@ -12,27 +12,35 @@ const config = {
     main: resolve('/src/js/index.js')
   },
   output: {
-    filename: "bundle.js"
+    filename: 'bundle.js'
   },
   devtool: 'cheap-module-eval-source-map',
   devServer: {
     // proxy: {
     //   '/api/*': 'http://localhost:1900/src'
     // },
-    historyApiFallback: true,
     inline: true,
     hot: true,
     port: 8080,
     overlay: true
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.css', '.scss'],
+    extensions: ['.js', '.css', '.scss', '.vue'], //省略后缀名
+    alias: { //配置全局指代
+      vue$: 'vue/dist/vue.esm.js',
+      '@': resolve('src')
+    }
   },
   module: {
     rules: [{
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
+        include: [resolve('src')],
         exclude: /node_modules/
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
       },
       {
         test: /\.css$/,
@@ -70,17 +78,19 @@ const config = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      __DEV__: JSON.stringify(JSON.parse((process.env.NODE_ENV == 'dev') || 'false')),
+      __DEV__: JSON.stringify(
+        JSON.parse(process.env.NODE_ENV == 'dev' || 'false')
+      ),
       CACHE_VERSION: new Date().getTime()
     }),
     new HtmlWebpackPlugin({
-      template: resolve('src/index.html'),
+      template: resolve('src/index.html')
     }),
     // 模块热更新
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin()
     // new ServiceWorkerWebpackPlugin({
     //   entry: resolve('src/sw.js')
     // })
   ]
-}
+};
 module.exports = config;
